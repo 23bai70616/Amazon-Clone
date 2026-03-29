@@ -9,13 +9,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, '../../.env') });
 
-const pool = new Pool({
-  user: process.env.PG_USER || 'postgres',
-  host: process.env.PG_HOST || 'localhost',
-  database: process.env.PG_DATABASE || 'amazon_clone',
-  password: process.env.PG_PASSWORD || 'postgres',
-  port: process.env.PG_PORT || 5432,
-});
+const poolConfig = process.env.DATABASE_URL 
+  ? { connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } }
+  : {
+      user: process.env.PG_USER || 'postgres',
+      host: process.env.PG_HOST || 'localhost',
+      database: process.env.PG_DATABASE || 'amazon_clone',
+      password: process.env.PG_PASSWORD || 'postgres',
+      port: process.env.PG_PORT || 5432,
+      ssl: { rejectUnauthorized: false }
+    };
+
+const pool = new Pool(poolConfig);
 
 pool.on('error', (err) => {
   console.error('Unexpected error on idle client', err);
