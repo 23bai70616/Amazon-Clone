@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --amazon-dark: #131921;
+  --amazon-light: #232f3e;
+  --amazon-orange: #febd69;
+  --amazon-blue: #007185;
+  --bg-main: #eaeded;
+  --text-primary: #0f1111;
+  --text-secondary: #565959;
+  --text-link: #007185;
+  --border-light: #d5d9d9;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* MOBILE RESPONSIVENESS OVERRIDES (Consolidated) */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-logo img {
+    width: 75px;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.link {
+  color: var(--text-link);
+}
+
+a.link:hover {
+  text-decoration: underline;
+  color: #c45500;
+}
+
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+/* Base button resets */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: #ffd814;
+  border: 1px solid #fcd200;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px 0 rgba(213,217,217,.5);
+  color: #0f1111;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.btn-primary:hover {
+  background: #f7ca00;
+  border-color: #f2c200;
+}
+
+.btn-secondary {
+  background: #fff;
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px 0 rgba(213,217,217,.5);
+  color: #0f1111;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #f7fafa;
+  border-color: #adb1b1;
+}
+
+.btn-full {
+  width: 100%;
+  text-align: center;
+  padding: 0.8rem 1rem;
+}
+
+.white-card {
+  background: #fff;
+  padding: 1rem;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+}

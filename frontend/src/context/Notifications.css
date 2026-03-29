@@ -1,0 +1,103 @@
+.notification-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  pointer-events: none;
+}
+
+.toast-notification {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border-left: 4px solid #007600;
+  width: 300px;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.toast-header {
+  padding: 10px 15px;
+  background: #fdfdfd;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toast-header span {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 700;
+  color: #007600;
+}
+
+.toast-header button {
+  background: transparent;
+  color: #ccc;
+}
+
+.toast-header button:hover {
+  color: #c81e1e;
+}
+
+.toast-body {
+  padding: 12px 15px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.toast-body img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.toast-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-name {
+  font-size: 13px;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: #0f1111;
+}
+
+.view-cart-link {
+  color: #007185;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+}
+
+.view-cart-link:hover {
+  text-decoration: underline;
+  color: #c45500;
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-left {
+  animation: slide-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}

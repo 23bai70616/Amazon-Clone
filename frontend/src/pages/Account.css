@@ -1,0 +1,110 @@
+.account-page {
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+}
+
+.account-header h1 {
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.account-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.account-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  background: white;
+  transition: all 0.2s ease;
+  min-height: 100px;
+}
+
+.account-card:hover {
+  background: #fdfdfd;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border-color: #007185;
+}
+
+.account-card-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.account-card-info h3 {
+  font-size: 17px;
+  font-weight: 500;
+  color: #0f1111;
+  margin-bottom: 5px;
+}
+
+.account-card-info p {
+  font-size: 13px;
+  color: #565959;
+}
+
+.account-sections {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.account-section-col h2 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.account-section-col a {
+  display: block;
+  font-size: 13px;
+  color: #007185;
+  margin-bottom: 10px;
+}
+
+.account-section-col a:hover {
+  text-decoration: underline;
+  color: #c45500;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+  .account-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .account-sections {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .account-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .account-sections {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .account-header h1 {
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+  }
+  .account-card {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .account-card-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+}
