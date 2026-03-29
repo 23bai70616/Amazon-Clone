@@ -33,7 +33,9 @@ const Login = () => {
     setLoading(true);
     setError('');
     try {
-      const url = `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/auth/request-otp`;
+      const base = import.meta.env.VITE_API_URL;
+      const apiBase = base ? (base.endsWith('/api') ? base : `${base}/api`) : 'http://localhost:5000/api';
+      const url = `${apiBase}/auth/request-otp`;
       const res = await axios.post(url, { identifier });
       setUseOtp(true);
       showNotification('OTP sent successfully (Simulated)', 'success');
@@ -51,7 +53,8 @@ const Login = () => {
     setError('');
 
     try {
-      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const base = import.meta.env.VITE_API_URL;
+      const baseUrl = base ? (base.endsWith('/api') ? base : `${base}/api`) : 'http://localhost:5000/api';
       const url = useOtp ? `${baseUrl}/auth/verify-otp` : `${baseUrl}/auth/login`;
       const payload = useOtp ? { identifier, code: otpCode } : { identifier, password };
 

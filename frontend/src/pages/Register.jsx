@@ -22,7 +22,9 @@ const Register = () => {
     setError('');
 
     try {
-      const url = `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/auth/register`;
+      const base = import.meta.env.VITE_API_URL;
+      const baseUrl = base ? (base.endsWith('/api') ? base : `${base}/api`) : 'http://localhost:5000/api';
+      const url = `${baseUrl}/auth/register`;
       const res = await axios.post(url, { name, identifier, password });
 
       if (res.data.token) {

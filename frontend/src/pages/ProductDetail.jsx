@@ -19,7 +19,9 @@ const ProductDetail = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/products/${id}`);
+        const baseUrl = import.meta.env.VITE_API_URL;
+        const apiUrl = baseUrl ? (baseUrl.endsWith('/api') ? `${baseUrl}/products/${id}` : `${baseUrl}/api/products/${id}`) : `http://localhost:5000/api/products/${id}`;
+        const { data } = await axios.get(apiUrl);
         setProduct(data);
       } catch (err) {
         setError('Product not found.');
