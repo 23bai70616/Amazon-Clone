@@ -28,7 +28,7 @@ const Home = () => {
       try {
         setLoading(true);
         // Using the backend search capabilities
-        let url = 'http://localhost:5000/api/products';
+        let url = `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/products`;
         if (searchQuery) {
           url += `?search=${searchQuery}`;
         }
