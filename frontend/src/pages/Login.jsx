@@ -19,14 +19,24 @@ const Login = () => {
   const { showNotification } = useNotification();
   const navigate = useNavigate();
 
-  const handleContinue = (e) => {
+  const handleContinue = async (e) => {
     e.preventDefault();
     if (!identifier) {
       setError('Enter your email or mobile phone number');
       return;
     }
     setError('');
-    setStep(2);
+    setLoading(true);
+    try {
+      const base = import.meta.env.VITE_API_URL;
+      const baseUrl = base ? (base.endsWith('/api') ? base : `${base}/api`) : 'http://localhost:5000/api';
+      await axios.post(`${baseUrl}/auth/check-user`, { identifier });
+      setStep(2);
+    } catch (err) {
+      setError(err.response?.data?.message || 'Something went wrong');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSendOtp = async () => {
@@ -106,8 +116,8 @@ const Login = () => {
               />
             </div>
 
-            <button type="submit" className="login-signin-btn">
-              Continue
+            <button type="submit" className="login-signin-btn" disabled={loading}>
+              {loading ? 'Continuing...' : 'Continue'}
             </button>
 
             <p className="login-terms">

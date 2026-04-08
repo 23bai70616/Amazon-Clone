@@ -2,6 +2,28 @@ import pool from '../config/db.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+export const checkUser = async (req, res, next) => {
+  try {
+    const { identifier } = req.body;
+    if (!identifier) return res.status(400).json({ message: 'Enter your email or mobile phone number' });
+
+    const isEmail = identifier.includes('@');
+    const query = isEmail 
+      ? 'SELECT id FROM users WHERE email = $1' 
+      : 'SELECT id FROM users WHERE mobile = $1';
+
+    const result = await pool.query(query, [isEmail ? identifier.toLowerCase() : identifier]);
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'create your amazon account first' });
+    }
+
+    res.json({ exists: true });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET || 'amazon_super_secret', { expiresIn: '7d' });
 };
@@ -77,7 +99,7 @@ export const login = async (req, res, next) => {
     const result = await pool.query(query, [isEmail ? identifier.toLowerCase() : identifier]);
     
     if (result.rows.length === 0) {
-      return res.status(400).json({ message: "We cannot find an account with that email/mobile number" });
+      return res.status(400).json({ message: "create your amazon account first" });
     }
 
     const user = result.rows[0];
@@ -145,7 +167,7 @@ export const verifyOTP = async (req, res, next) => {
     const userResult = await pool.query(userQuery, [isEmail ? identifier.toLowerCase() : identifier]);
     
     if (userResult.rows.length === 0) {
-      return res.status(400).json({ message: 'User not found. Please register first.' });
+      return res.status(400).json({ message: 'create your amazon account first' });
     }
 
     const user = userResult.rows[0];
